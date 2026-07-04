@@ -16,6 +16,7 @@
       background: #f5efe8;
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
       padding-top: 70px;
+      transition: padding-top 0.3s ease;
     }
     .bg-terracotta-light { background: #e7d4c0; }
     .bg-terracotta { background: #c27a5a; }
@@ -67,7 +68,10 @@
       body {
         padding-top: 60px;
       }
-      /* Make brand name smaller on mobile but show full name */
+      /* When mobile menu is open, push content down */
+      body.menu-open {
+        padding-top: 260px !important;
+      }
       .brand-name {
         font-size: 0.85rem;
       }
@@ -86,13 +90,27 @@
         padding-top: 1rem !important;
         border-radius: 1.5rem !important;
       }
-      /* Reduce logo size on mobile */
       .nav-logo {
         width: 20px;
         height: 26px;
       }
+      /* Mobile dropdown menu styling */
+      .mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+      }
+      .mobile-menu.open {
+        max-height: 400px;
+        opacity: 1;
+        visibility: visible;
+      }
+      .mobile-menu-inner {
+        padding: 1rem 0;
+      }
     }
-    /* Fix for navbar on mobile */
     .navbar-container {
       padding-left: 0.75rem;
       padding-right: 0.75rem;
@@ -103,7 +121,6 @@
         padding-right: 0.5rem;
       }
     }
-    /* Brand name styling - always show full name */
     .brand-name {
       font-weight: 700;
       color: #2a4b3c;
@@ -114,7 +131,7 @@
     }
   </style>
 </head>
-<body class="antialiased text-gray-800">
+<body class="antialiased text-gray-800" id="pageBody">
 
   <!-- ====== NAVIGATION BAR ====== -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-warm-cream/95 backdrop-blur-sm shadow-sm border-b border-terracotta/20">
@@ -135,26 +152,28 @@
         </div>
         <div class="md:hidden">
           <input type="checkbox" id="menu-toggle" class="hidden peer" />
-          <label for="menu-toggle" class="text-forest text-xl sm:text-2xl cursor-pointer">
+          <label for="menu-toggle" class="text-forest text-xl sm:text-2xl cursor-pointer" onclick="toggleMobileMenu()">
             <i class="fas fa-bars"></i>
           </label>
-          <div class="absolute left-0 right-0 top-14 sm:top-16 bg-warm-cream/95 backdrop-blur-sm border-b border-terracotta/20 shadow-lg peer-checked:block hidden">
-            <div class="flex flex-col items-center space-y-3 py-5 text-gray-700 font-medium">
-              <a href="#hero" class="nav-link" onclick="document.getElementById('menu-toggle').checked = false;">Welcome</a>
-              <a href="#vision" class="nav-link" onclick="document.getElementById('menu-toggle').checked = false;">Vision</a>
-              <a href="#menu" class="nav-link" onclick="document.getElementById('menu-toggle').checked = false;">Menu</a>
-              <a href="#reviews" class="nav-link" onclick="document.getElementById('menu-toggle').checked = false;">Reviews</a>
-              <a href="#order" class="nav-link" onclick="document.getElementById('menu-toggle').checked = false;">Order</a>
-              <a href="#contact" class="nav-link" onclick="document.getElementById('menu-toggle').checked = false;">Contact</a>
-            </div>
-          </div>
+          <!-- Mobile Dropdown Menu - Now outside the relative container -->
+        </div>
+      </div>
+      <!-- Mobile Menu Dropdown - separate div -->
+      <div id="mobileMenu" class="md:hidden mobile-menu">
+        <div class="mobile-menu-inner flex flex-col items-center space-y-3 text-gray-700 font-medium border-t border-terracotta/20 bg-warm-cream/95">
+          <a href="#hero" class="nav-link py-2 w-full text-center hover:bg-terracotta/5" onclick="closeMobileMenu()">Welcome</a>
+          <a href="#vision" class="nav-link py-2 w-full text-center hover:bg-terracotta/5" onclick="closeMobileMenu()">Vision</a>
+          <a href="#menu" class="nav-link py-2 w-full text-center hover:bg-terracotta/5" onclick="closeMobileMenu()">Menu</a>
+          <a href="#reviews" class="nav-link py-2 w-full text-center hover:bg-terracotta/5" onclick="closeMobileMenu()">Reviews</a>
+          <a href="#order" class="nav-link py-2 w-full text-center hover:bg-terracotta/5" onclick="closeMobileMenu()">Order</a>
+          <a href="#contact" class="nav-link py-2 w-full text-center hover:bg-terracotta/5" onclick="closeMobileMenu()">Contact</a>
         </div>
       </div>
     </div>
   </nav>
 
   <!-- main container -->
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-10 bg-warm-cream shadow-earth rounded-2xl sm:rounded-3xl my-2 sm:my-4 md:my-8 main-container">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-10 bg-warm-cream shadow-earth rounded-2xl sm:rounded-3xl my-2 sm:my-4 md:my-8 main-container" id="mainContent">
 
     <!-- ====== HERO ====== -->
     <section id="hero" class="text-center py-8 md:py-16 px-2">
@@ -196,7 +215,7 @@
       </div>
     </section>
 
-    <!-- ====== MENU with LOCAL images & multiple price variants ====== -->
+    <!-- ====== MENU ====== -->
     <section id="menu" class="py-10 md:py-16 px-2 border-t border-terracotta/20">
       <div class="text-center mb-8 sm:mb-12">
         <span class="text-terracotta font-semibold tracking-widest text-xs sm:text-sm uppercase"><i class="fas fa-seedling mr-2"></i> Our menu</span>
@@ -206,7 +225,7 @@
       </div>
 
       <div class="grid md:grid-cols-3 gap-6 sm:gap-8">
-        <!-- product 1: VitaBlend (BEST SELLER) -->
+        <!-- product 1: VitaBlend -->
         <div class="bg-white/80 rounded-2xl p-4 sm:p-6 shadow-earth card-hover border border-terracotta/10 flex flex-col relative">
           <span class="absolute -top-2 -right-2 bg-terracotta text-white text-[10px] sm:text-xs font-bold px-3 sm:px-4 py-0.5 sm:py-1 rounded-full shadow-md rotate-3">
             <i class="fas fa-star mr-1"></i> best seller
@@ -368,6 +387,42 @@
   <div class="text-center text-[10px] sm:text-xs text-gray-400 pb-4">
     <span>&#127793; pure · natural · wholesome</span>
   </div>
+
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const body = document.getElementById('pageBody');
+      const isOpen = menu.classList.contains('open');
+      
+      if (isOpen) {
+        menu.classList.remove('open');
+        body.classList.remove('menu-open');
+      } else {
+        menu.classList.add('open');
+        body.classList.add('menu-open');
+      }
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const body = document.getElementById('pageBody');
+      menu.classList.remove('open');
+      body.classList.remove('menu-open');
+      // Uncheck the checkbox
+      document.getElementById('menu-toggle').checked = false;
+    }
+
+    // Close menu when clicking outside on mobile
+    document.addEventListener('click', function(event) {
+      const menu = document.getElementById('mobileMenu');
+      const toggle = document.querySelector('label[for="menu-toggle"]');
+      const isOpen = menu.classList.contains('open');
+      
+      if (isOpen && !menu.contains(event.target) && !toggle.contains(event.target)) {
+        closeMobileMenu();
+      }
+    });
+  </script>
 
 </body>
 </html>
