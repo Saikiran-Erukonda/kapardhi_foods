@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-  <link rel="canonical" href="https://Kapardhifoods.in" />
-  <meta property="og:url" content="https://Kapardhifoods.in" />
   <title>Home - Kapardhi foods</title>
   <!-- Tailwind CSS via CDN + custom earthy elegance -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome Icons (free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="canonical" href="https://Kapardhifoods.in" />
+  <meta property="og:url" content="https://Kapardhifoods.in" />
   <style>
     /* earthy, warm, forest & terracotta accents */
     body {
       background: #f5efe8;
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      padding-top: 70px; /* Added: Prevent content from hiding behind fixed navbar */
     }
     .bg-terracotta-light { background: #e7d4c0; }
     .bg-terracotta { background: #c27a5a; }
@@ -61,20 +62,55 @@
       backdrop-filter: blur(2px);
       border: 1px solid rgba(176, 100, 63, 0.15);
     }
+    /* Mobile fixes */
+    @media (max-width: 640px) {
+      body {
+        padding-top: 60px; /* Smaller padding for mobile */
+      }
+      .nav-brand-text {
+        font-size: 0.9rem; /* Smaller text on mobile */
+      }
+      .nav-brand-sub {
+        display: none; /* Hide "Foods" on mobile to prevent overlap */
+      }
+      .hero-title {
+        font-size: 2rem !important; /* Smaller hero title on mobile */
+        line-height: 1.2 !important;
+      }
+      .hero-subtitle {
+        font-size: 1rem !important;
+      }
+      .main-container {
+        margin-top: 0.5rem !important;
+        padding-top: 1rem !important;
+        border-radius: 1.5rem !important;
+      }
+    }
+    /* Fix for navbar on mobile */
+    .navbar-container {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+    @media (max-width: 640px) {
+      .navbar-container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+    }
   </style>
 </head>
 <body class="antialiased text-gray-800">
 
   <!-- ====== NAVIGATION BAR ====== -->
-  <nav class="sticky top-0 z-50 bg-warm-cream/90 backdrop-blur-sm shadow-sm border-b border-terracotta/20">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <div class="flex items-center space-x-2">
-          <img src="assets/kapardhi_logo.png" alt="Leaf Icon" class="w-6 h-8 object-contain" />
-          <span class="font-bold text-xl text-forest">Kapardhi</span>
-          <span class="text-terracotta font-medium hidden sm:inline">Foods</span>
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-warm-cream/95 backdrop-blur-sm shadow-sm border-b border-terracotta/20">
+    <div class="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 navbar-container">
+      <div class="flex justify-between items-center h-14 sm:h-16">
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <img src="assets/kapardhi_logo.png" alt="Leaf Icon" class="w-5 h-7 sm:w-6 sm:h-8 object-contain" />
+          <span class="font-bold text-base sm:text-xl text-forest nav-brand-text">Kapardhi</span>
+          <span class="text-terracotta font-medium hidden sm:inline nav-brand-sub">Foods</span>
         </div>
-        <div class="hidden md:flex space-x-6 text-gray-700 font-medium">
+        <div class="hidden md:flex space-x-4 lg:space-x-6 text-gray-700 font-medium text-sm lg:text-base">
           <a href="#hero" class="nav-link">Welcome</a>
           <a href="#vision" class="nav-link">Vision</a>
           <a href="#menu" class="nav-link">Menu</a>
@@ -84,10 +120,10 @@
         </div>
         <div class="md:hidden">
           <input type="checkbox" id="menu-toggle" class="hidden peer" />
-          <label for="menu-toggle" class="text-forest text-2xl cursor-pointer">
+          <label for="menu-toggle" class="text-forest text-xl sm:text-2xl cursor-pointer">
             <i class="fas fa-bars"></i>
           </label>
-          <div class="absolute left-0 right-0 top-16 bg-warm-cream/95 backdrop-blur-sm border-b border-terracotta/20 shadow-lg peer-checked:block hidden">
+          <div class="absolute left-0 right-0 top-14 sm:top-16 bg-warm-cream/95 backdrop-blur-sm border-b border-terracotta/20 shadow-lg peer-checked:block hidden">
             <div class="flex flex-col items-center space-y-3 py-5 text-gray-700 font-medium">
               <a href="#hero" class="nav-link" onclick="document.getElementById('menu-toggle').checked = false;">Welcome</a>
               <a href="#vision" class="nav-link" onclick="document.getElementById('menu-toggle').checked = false;">Vision</a>
@@ -103,64 +139,64 @@
   </nav>
 
   <!-- main container -->
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10 bg-warm-cream shadow-earth rounded-3xl my-4 md:my-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-10 bg-warm-cream shadow-earth rounded-2xl sm:rounded-3xl my-2 sm:my-4 md:my-8 main-container">
 
     <!-- ====== HERO ====== -->
-    <section id="hero" class="text-center py-10 md:py-16 px-2">
-      <div class="inline-block bg-terracotta-light/40 px-6 py-2 rounded-full text-terracotta font-medium text-sm tracking-wide mb-4">
+    <section id="hero" class="text-center py-8 md:py-16 px-2">
+      <div class="inline-block bg-terracotta-light/40 px-4 sm:px-6 py-2 rounded-full text-terracotta font-medium text-xs sm:text-sm tracking-wide mb-3 sm:mb-4">
         <i class="fas fa-seedling mr-2"></i> pure · natural · wholesome
       </div>
-      <h1 class="text-4xl md:text-6xl font-bold text-forest leading-tight">
+      <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-forest leading-tight hero-title">
         Kapardhi <span class="text-terracotta">Foods</span>
       </h1>
-      <p class="text-lg md:text-2xl text-gray-700 max-w-2xl mx-auto mt-4 leading-relaxed">
+      <p class="text-base sm:text-lg md:text-2xl text-gray-700 max-w-2xl mx-auto mt-3 sm:mt-4 leading-relaxed hero-subtitle">
         Wholesome snacks crafted with love &amp; nature's finest.
       </p>
-      <div class="mt-8 flex flex-wrap justify-center gap-4">
-        <a href="#menu" class="btn-solid-earth px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition flex items-center gap-2">
+      <div class="mt-6 sm:mt-8 flex flex-wrap justify-center gap-3 sm:gap-4">
+        <a href="#menu" class="btn-solid-earth px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-base sm:text-lg font-semibold shadow-lg transition flex items-center gap-2">
           <i class="fas fa-utensils"></i> Explore our menu
         </a>
-        <a href="#order" class="btn-outline-earth px-8 py-3 rounded-full text-lg font-semibold transition flex items-center gap-2">
+        <a href="#order" class="btn-outline-earth px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-base sm:text-lg font-semibold transition flex items-center gap-2">
           <i class="fas fa-shopping-bag"></i> How to order
         </a>
       </div>
     </section>
 
     <!-- ====== VISION ====== -->
-    <section id="vision" class="py-12 md:py-16 px-2 border-t border-terracotta/20">
+    <section id="vision" class="py-10 md:py-16 px-2 border-t border-terracotta/20">
       <div class="max-w-3xl mx-auto text-center">
-        <span class="text-terracotta font-semibold tracking-widest text-sm uppercase"><i class="fas fa-eye mr-2"></i> Our vision</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-forest mt-2">Premium snacks, zero compromise</h2>
-        <div class="w-20 h-1 bg-terracotta mx-auto my-5 rounded-full"></div>
-        <p class="text-lg text-gray-700 leading-relaxed">
+        <span class="text-terracotta font-semibold tracking-widest text-xs sm:text-sm uppercase"><i class="fas fa-eye mr-2"></i> Our vision</span>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-forest mt-2">Premium snacks, zero compromise</h2>
+        <div class="w-20 h-1 bg-terracotta mx-auto my-4 sm:my-5 rounded-full"></div>
+        <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
           At Kapardhi Foods, we believe in pure, natural goodness. Every bite is crafted with premium ingredients — 
           <span class="font-semibold text-forest">zero refined sugars</span>, no artificial additives. 
           Just the wholesome energy your body deserves.
         </p>
-        <div class="mt-6 flex flex-wrap justify-center gap-6 text-sm text-gray-600">
-          <span class="bg-white/60 px-4 py-2 rounded-full shadow-sm"><i class="fas fa-check-circle text-terracotta mr-2"></i> 100% natural</span>
-          <span class="bg-white/60 px-4 py-2 rounded-full shadow-sm"><i class="fas fa-check-circle text-terracotta mr-2"></i> No refined sugar</span>
-          <span class="bg-white/60 px-4 py-2 rounded-full shadow-sm"><i class="fas fa-check-circle text-terracotta mr-2"></i> Rich in protein &amp; fiber</span>
+        <div class="mt-5 sm:mt-6 flex flex-wrap justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-gray-600">
+          <span class="bg-white/60 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm"><i class="fas fa-check-circle text-terracotta mr-2"></i> 100% natural</span>
+          <span class="bg-white/60 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm"><i class="fas fa-check-circle text-terracotta mr-2"></i> No refined sugar</span>
+          <span class="bg-white/60 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm"><i class="fas fa-check-circle text-terracotta mr-2"></i> Rich in protein &amp; fiber</span>
         </div>
       </div>
     </section>
 
     <!-- ====== MENU with LOCAL images & multiple price variants ====== -->
-    <section id="menu" class="py-12 md:py-16 px-2 border-t border-terracotta/20">
-      <div class="text-center mb-12">
-        <span class="text-terracotta font-semibold tracking-widest text-sm uppercase"><i class="fas fa-seedling mr-2"></i> Our menu</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-forest mt-2">Wholesome picks</h2>
-        <div class="w-20 h-1 bg-terracotta mx-auto my-4 rounded-full"></div>
-        <p class="text-gray-600 max-w-xl mx-auto">Handcrafted with premium ingredients, every product is a celebration of natural taste.</p>
+    <section id="menu" class="py-10 md:py-16 px-2 border-t border-terracotta/20">
+      <div class="text-center mb-8 sm:mb-12">
+        <span class="text-terracotta font-semibold tracking-widest text-xs sm:text-sm uppercase"><i class="fas fa-seedling mr-2"></i> Our menu</span>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-forest mt-2">Wholesome picks</h2>
+        <div class="w-20 h-1 bg-terracotta mx-auto my-3 sm:my-4 rounded-full"></div>
+        <p class="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">Handcrafted with premium ingredients, every product is a celebration of natural taste.</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-3 gap-6 sm:gap-8">
         <!-- product 1: VitaBlend (BEST SELLER) -->
-        <div class="bg-white/80 rounded-2xl p-6 shadow-earth card-hover border border-terracotta/10 flex flex-col relative">
-          <span class="absolute -top-2 -right-2 bg-terracotta text-white text-xs font-bold px-4 py-1 rounded-full shadow-md rotate-3">
+        <div class="bg-white/80 rounded-2xl p-4 sm:p-6 shadow-earth card-hover border border-terracotta/10 flex flex-col relative">
+          <span class="absolute -top-2 -right-2 bg-terracotta text-white text-[10px] sm:text-xs font-bold px-3 sm:px-4 py-0.5 sm:py-1 rounded-full shadow-md rotate-3">
             <i class="fas fa-star mr-1"></i> best seller
           </span>
-          <div class="overflow-hidden rounded-xl mb-4">
+          <div class="overflow-hidden rounded-xl mb-3 sm:mb-4">
             <img 
               src="assets/vitablend.png" 
               alt="VitaBlend – multivitamin protein powder" 
@@ -170,23 +206,23 @@
             />
           </div>
           <div class="flex items-center gap-2 mb-1">
-            <div class="bg-terracotta-light/30 w-10 h-10 rounded-full flex items-center justify-center text-terracotta">
+            <div class="bg-terracotta-light/30 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-terracotta text-xs sm:text-base">
               <i class="fas fa-mortar-pestle"></i>
             </div>
-            <h3 class="text-xl font-bold text-forest">VitaBlend</h3>
+            <h3 class="text-lg sm:text-xl font-bold text-forest">VitaBlend</h3>
           </div>
-          <p class="text-sm text-terracotta font-medium mt-1">Multivitamin protein breakfast powder</p>
-          <p class="text-gray-600 text-sm mt-2 flex-grow">Nuts, seeds, jaggery, oats — a powerhouse of energy.</p>
-          <div class="mt-3 bg-terracotta/5 rounded-xl p-3 w-full">
-            <div class="price-item"><span>200 g</span> <span class="font-semibold text-forest">₹299</span></div>
-            <div class="price-item"><span>400 g</span> <span class="font-semibold text-forest">₹549</span></div>
-            <div class="price-item"><span>1 kg</span> <span class="font-semibold text-forest">₹1,199</span></div>
+          <p class="text-xs sm:text-sm text-terracotta font-medium mt-1">Multivitamin protein breakfast powder</p>
+          <p class="text-gray-600 text-xs sm:text-sm mt-2 flex-grow">Nuts, seeds, jaggery, oats — a powerhouse of energy.</p>
+          <div class="mt-3 bg-terracotta/5 rounded-xl p-2.5 sm:p-3 w-full">
+            <div class="price-item text-xs sm:text-sm"><span>200 g</span> <span class="font-semibold text-forest">₹299</span></div>
+            <div class="price-item text-xs sm:text-sm"><span>400 g</span> <span class="font-semibold text-forest">₹549</span></div>
+            <div class="price-item text-xs sm:text-sm"><span>1 kg</span> <span class="font-semibold text-forest">₹1,199</span></div>
           </div>
         </div>
 
         <!-- product 2: Kaju Kick -->
-        <div class="bg-white/80 rounded-2xl p-6 shadow-earth card-hover border border-terracotta/10 flex flex-col">
-          <div class="overflow-hidden rounded-xl mb-4">
+        <div class="bg-white/80 rounded-2xl p-4 sm:p-6 shadow-earth card-hover border border-terracotta/10 flex flex-col">
+          <div class="overflow-hidden rounded-xl mb-3 sm:mb-4">
             <img 
               src="assets/kajukick.jpg" 
               alt="Kaju Kick – spicy ground roasted cashew powder" 
@@ -196,23 +232,23 @@
             />
           </div>
           <div class="flex items-center gap-2 mb-1">
-            <div class="bg-terracotta-light/30 w-10 h-10 rounded-full flex items-center justify-center text-terracotta">
+            <div class="bg-terracotta-light/30 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-terracotta text-xs sm:text-base">
               <i class="fas fa-pepper-hot"></i>
             </div>
-            <h3 class="text-xl font-bold text-forest">Kaju Kick</h3>
+            <h3 class="text-lg sm:text-xl font-bold text-forest">Kaju Kick</h3>
           </div>
-          <p class="text-sm text-terracotta font-medium mt-1">Spicy ground roasted cashew powder</p>
-          <p class="text-gray-600 text-sm mt-2 flex-grow">Roasted cashews with a hint of heat — irresistible.</p>
-          <div class="mt-3 bg-terracotta/5 rounded-xl p-3 w-full">
-            <div class="price-item"><span>100 g</span> <span class="font-semibold text-forest">₹199</span></div>
-            <div class="price-item"><span>250 g</span> <span class="font-semibold text-forest">₹449</span></div>
-            <div class="price-item"><span>500 g</span> <span class="font-semibold text-forest">₹849</span></div>
+          <p class="text-xs sm:text-sm text-terracotta font-medium mt-1">Spicy ground roasted cashew powder</p>
+          <p class="text-gray-600 text-xs sm:text-sm mt-2 flex-grow">Roasted cashews with a hint of heat — irresistible.</p>
+          <div class="mt-3 bg-terracotta/5 rounded-xl p-2.5 sm:p-3 w-full">
+            <div class="price-item text-xs sm:text-sm"><span>100 g</span> <span class="font-semibold text-forest">₹199</span></div>
+            <div class="price-item text-xs sm:text-sm"><span>250 g</span> <span class="font-semibold text-forest">₹449</span></div>
+            <div class="price-item text-xs sm:text-sm"><span>500 g</span> <span class="font-semibold text-forest">₹849</span></div>
           </div>
         </div>
 
         <!-- product 3: Tea Punch -->
-        <div class="bg-white/80 rounded-2xl p-6 shadow-earth card-hover border border-terracotta/10 flex flex-col">
-          <div class="overflow-hidden rounded-xl mb-4">
+        <div class="bg-white/80 rounded-2xl p-4 sm:p-6 shadow-earth card-hover border border-terracotta/10 flex flex-col">
+          <div class="overflow-hidden rounded-xl mb-3 sm:mb-4">
             <img 
               src="assets/tea_punch.png" 
               alt="Tea Punch – grinded Elachi and dry ginger powder" 
@@ -222,90 +258,90 @@
             />
           </div>
           <div class="flex items-center gap-2 mb-1">
-            <div class="bg-terracotta-light/30 w-10 h-10 rounded-full flex items-center justify-center text-terracotta">
+            <div class="bg-terracotta-light/30 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-terracotta text-xs sm:text-base">
               <i class="fas fa-seedling"></i>
             </div>
-            <h3 class="text-xl font-bold text-forest">Tea Punch</h3>
+            <h3 class="text-lg sm:text-xl font-bold text-forest">Tea Punch</h3>
           </div>
-          <p class="text-sm text-terracotta font-medium mt-1">Elachi &amp; Jaggery &amp; Sonti mix</p>
-          <p class="text-gray-600 text-sm mt-2 flex-grow">Perfectly sweetened for an authentic chai flavor — anytime.</p>
-          <div class="mt-3 bg-terracotta/5 rounded-xl p-3 w-full">
-            <div class="price-item"><span>150 g</span> <span class="font-semibold text-forest">₹179</span></div>
-            <div class="price-item"><span>300 g</span> <span class="font-semibold text-forest">₹329</span></div>
-            <div class="price-item"><span>600 g</span> <span class="font-semibold text-forest">₹599</span></div>
+          <p class="text-xs sm:text-sm text-terracotta font-medium mt-1">Elachi &amp; Jaggery &amp; Sonti mix</p>
+          <p class="text-gray-600 text-xs sm:text-sm mt-2 flex-grow">Perfectly sweetened for an authentic chai flavor — anytime.</p>
+          <div class="mt-3 bg-terracotta/5 rounded-xl p-2.5 sm:p-3 w-full">
+            <div class="price-item text-xs sm:text-sm"><span>150 g</span> <span class="font-semibold text-forest">₹179</span></div>
+            <div class="price-item text-xs sm:text-sm"><span>300 g</span> <span class="font-semibold text-forest">₹329</span></div>
+            <div class="price-item text-xs sm:text-sm"><span>600 g</span> <span class="font-semibold text-forest">₹599</span></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ====== HOW TO ORDER ====== -->
-    <section id="order" class="py-12 md:py-16 px-2 border-t border-terracotta/20">
-      <div class="text-center mb-10">
-        <span class="text-terracotta font-semibold tracking-widest text-sm uppercase"><i class="fas fa-shopping-bag mr-2"></i> how to order</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-forest mt-2">Simple &amp; quick</h2>
-        <div class="w-20 h-1 bg-terracotta mx-auto my-4 rounded-full"></div>
+    <section id="order" class="py-10 md:py-16 px-2 border-t border-terracotta/20">
+      <div class="text-center mb-8 sm:mb-10">
+        <span class="text-terracotta font-semibold tracking-widest text-xs sm:text-sm uppercase"><i class="fas fa-shopping-bag mr-2"></i> how to order</span>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-forest mt-2">Simple &amp; quick</h2>
+        <div class="w-20 h-1 bg-terracotta mx-auto my-3 sm:my-4 rounded-full"></div>
       </div>
-      <div class="flex flex-wrap justify-center gap-8 md:gap-12">
-        <div class="flex flex-col items-center text-center max-w-[200px]">
-          <div class="bg-terracotta-light/40 w-20 h-20 rounded-full flex items-center justify-center text-2xl text-terracotta font-bold border-2 border-terracotta/30">1</div>
-          <p class="mt-4 font-semibold text-forest">Pick your snacks</p>
-          <p class="text-sm text-gray-600">Choose from our range of natural, premium products.</p>
+      <div class="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12">
+        <div class="flex flex-col items-center text-center max-w-[160px] sm:max-w-[200px]">
+          <div class="bg-terracotta-light/40 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center text-xl sm:text-2xl text-terracotta font-bold border-2 border-terracotta/30">1</div>
+          <p class="mt-3 sm:mt-4 font-semibold text-forest text-sm sm:text-base">Pick your snacks</p>
+          <p class="text-xs sm:text-sm text-gray-600">Choose from our range of natural, premium products.</p>
         </div>
-        <div class="flex flex-col items-center text-center max-w-[200px]">
-          <div class="bg-terracotta-light/40 w-20 h-20 rounded-full flex items-center justify-center text-2xl text-terracotta font-bold border-2 border-terracotta/30">2</div>
-          <p class="mt-4 font-semibold text-forest">WhatsApp your order</p>
-          <p class="text-sm text-gray-600">Send us a message with your choice &amp; quantity.</p>
+        <div class="flex flex-col items-center text-center max-w-[160px] sm:max-w-[200px]">
+          <div class="bg-terracotta-light/40 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center text-xl sm:text-2xl text-terracotta font-bold border-2 border-terracotta/30">2</div>
+          <p class="mt-3 sm:mt-4 font-semibold text-forest text-sm sm:text-base">WhatsApp your order</p>
+          <p class="text-xs sm:text-sm text-gray-600">Send us a message with your choice &amp; quantity.</p>
         </div>
-        <div class="flex flex-col items-center text-center max-w-[200px]">
-          <div class="bg-terracotta-light/40 w-20 h-20 rounded-full flex items-center justify-center text-2xl text-terracotta font-bold border-2 border-terracotta/30">3</div>
-          <p class="mt-4 font-semibold text-forest">Pay via UPI</p>
-          <p class="text-sm text-gray-600">Complete your purchase quickly with UPI.</p>
+        <div class="flex flex-col items-center text-center max-w-[160px] sm:max-w-[200px]">
+          <div class="bg-terracotta-light/40 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center text-xl sm:text-2xl text-terracotta font-bold border-2 border-terracotta/30">3</div>
+          <p class="mt-3 sm:mt-4 font-semibold text-forest text-sm sm:text-base">Pay via UPI</p>
+          <p class="text-xs sm:text-sm text-gray-600">Complete your purchase quickly with UPI.</p>
         </div>
       </div>
-      <div class="text-center mt-10">
-        <a href="https://wa.me/+917330815709" class="inline-block btn-solid-earth px-8 py-3 rounded-full font-semibold shadow-lg transition">
+      <div class="text-center mt-8 sm:mt-10">
+        <a href="https://wa.me/+917330815709" class="inline-block btn-solid-earth px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-base sm:text-lg font-semibold shadow-lg transition">
           <i class="fab fa-whatsapp mr-2"></i> Order on WhatsApp
         </a>
       </div>
     </section>
 
     <!-- ====== CONTACT / FOOTER ====== -->
-    <section id="contact" class="py-12 md:py-16 px-2 border-t border-terracotta/20">
+    <section id="contact" class="py-10 md:py-16 px-2 border-t border-terracotta/20">
       <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-10">
-          <span class="text-terracotta font-semibold tracking-widest text-sm uppercase"><i class="fas fa-address-card mr-2"></i> Contact</span>
-          <h2 class="text-3xl md:text-4xl font-bold text-forest mt-2">Let's connect</h2>
-          <div class="w-20 h-1 bg-terracotta mx-auto my-4 rounded-full"></div>
+        <div class="text-center mb-8 sm:mb-10">
+          <span class="text-terracotta font-semibold tracking-widest text-xs sm:text-sm uppercase"><i class="fas fa-address-card mr-2"></i> Contact</span>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-forest mt-2">Let's connect</h2>
+          <div class="w-20 h-1 bg-terracotta mx-auto my-3 sm:my-4 rounded-full"></div>
         </div>
-        <div class="flex flex-wrap justify-center gap-8 text-center text-gray-700">
+        <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-center text-gray-700">
           <div class="flex flex-col items-center">
-            <div class="w-14 h-14 bg-terracotta/10 rounded-full flex items-center justify-center text-2xl text-terracotta">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-terracotta/10 rounded-full flex items-center justify-center text-xl sm:text-2xl text-terracotta">
               <i class="fab fa-whatsapp"></i>
             </div>
-            <span class="mt-2 font-medium text-forest">WhatsApp</span>
-            <span class="text-sm">+91 7330815709</span>
+            <span class="mt-2 font-medium text-forest text-sm sm:text-base">WhatsApp</span>
+            <span class="text-xs sm:text-sm">+91 7330815709</span>
           </div>
           <div class="flex flex-col items-center">
-            <div class="w-14 h-14 bg-terracotta/10 rounded-full flex items-center justify-center text-2xl text-terracotta">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-terracotta/10 rounded-full flex items-center justify-center text-xl sm:text-2xl text-terracotta">
               <i class="fas fa-envelope"></i>
             </div>
-            <span class="mt-2 font-medium text-forest">Email</span>
-            <span class="text-sm">hellokapardhifoods@gmail.com</span>
+            <span class="mt-2 font-medium text-forest text-sm sm:text-base">Email</span>
+            <span class="text-xs sm:text-sm">hellokapardhifoods@gmail.com</span>
           </div>
           <div class="flex flex-col items-center">
-            <div class="w-14 h-14 bg-terracotta/10 rounded-full flex items-center justify-center text-2xl text-terracotta">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-terracotta/10 rounded-full flex items-center justify-center text-xl sm:text-2xl text-terracotta">
               <i class="fas fa-share-alt"></i>
             </div>
-            <span class="mt-2 font-medium text-forest">Social</span>
-            <div class="flex gap-3 text-lg">
+            <span class="mt-2 font-medium text-forest text-sm sm:text-base">Social</span>
+            <div class="flex gap-3 text-base sm:text-lg">
               <a href="https://instagram.com/saikiran.__28" class="text-terracotta/70 hover:text-terracotta"><i class="fab fa-instagram"></i></a>
               <a href="#" class="text-terracotta/70 hover:text-terracotta"><i class="fab fa-facebook"></i></a>
               <a href="#" class="text-terracotta/70 hover:text-terracotta"><i class="fab fa-youtube"></i></a>
             </div>
           </div>
         </div>
-        <hr class="earth-divider my-8" />
-        <div class="text-center text-sm text-gray-500">
+        <hr class="earth-divider my-6 sm:my-8" />
+        <div class="text-center text-xs sm:text-sm text-gray-500">
           <p>&copy; 2026 Kapardhi Foods — crafted with <i class="fas fa-heart text-terracotta"></i> from nature's finest.</p>
         </div>
       </div>
@@ -314,7 +350,7 @@
   </div> 
   <!-- end main container -->
 
-  <div class="text-center text-xs text-gray-400 pb-4">
+  <div class="text-center text-[10px] sm:text-xs text-gray-400 pb-4">
     <span>&#127793; pure · natural · wholesome</span>
   </div>
 
