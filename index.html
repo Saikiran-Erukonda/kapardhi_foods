@@ -15,7 +15,7 @@
     body {
       background: #f5efe8;
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      padding-top: 70px; /* Added: Prevent content from hiding behind fixed navbar */
+      padding-top: 70px;
     }
     .bg-terracotta-light { background: #e7d4c0; }
     .bg-terracotta { background: #c27a5a; }
@@ -65,16 +65,17 @@
     /* Mobile fixes */
     @media (max-width: 640px) {
       body {
-        padding-top: 60px; /* Smaller padding for mobile */
+        padding-top: 60px;
       }
-      .nav-brand-text {
-        font-size: 0.9rem; /* Smaller text on mobile */
+      /* Make brand name smaller on mobile but show full name */
+      .brand-name {
+        font-size: 0.85rem;
       }
-      .nav-brand-sub {
-        display: none; /* Hide "Foods" on mobile to prevent overlap */
+      .brand-name-full {
+        font-size: 0.85rem;
       }
       .hero-title {
-        font-size: 2rem !important; /* Smaller hero title on mobile */
+        font-size: 2rem !important;
         line-height: 1.2 !important;
       }
       .hero-subtitle {
@@ -84,6 +85,11 @@
         margin-top: 0.5rem !important;
         padding-top: 1rem !important;
         border-radius: 1.5rem !important;
+      }
+      /* Reduce logo size on mobile */
+      .nav-logo {
+        width: 20px;
+        height: 26px;
       }
     }
     /* Fix for navbar on mobile */
@@ -97,6 +103,15 @@
         padding-right: 0.5rem;
       }
     }
+    /* Brand name styling - always show full name */
+    .brand-name {
+      font-weight: 700;
+      color: #2a4b3c;
+    }
+    .brand-name-full {
+      font-weight: 500;
+      color: #b0643f;
+    }
   </style>
 </head>
 <body class="antialiased text-gray-800">
@@ -105,10 +120,10 @@
   <nav class="fixed top-0 left-0 right-0 z-50 bg-warm-cream/95 backdrop-blur-sm shadow-sm border-b border-terracotta/20">
     <div class="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 navbar-container">
       <div class="flex justify-between items-center h-14 sm:h-16">
-        <div class="flex items-center space-x-1 sm:space-x-2">
-          <img src="assets/kapardhi_logo.png" alt="Leaf Icon" class="w-5 h-7 sm:w-6 sm:h-8 object-contain" />
-          <span class="font-bold text-base sm:text-xl text-forest nav-brand-text">Kapardhi</span>
-          <span class="text-terracotta font-medium hidden sm:inline nav-brand-sub">Foods</span>
+        <div class="flex items-center space-x-1.5 sm:space-x-2">
+          <img src="assets/kapardhi_logo.png" alt="Leaf Icon" class="nav-logo w-5 h-7 sm:w-6 sm:h-8 object-contain" />
+          <span class="brand-name text-base sm:text-xl">Kapardhi</span>
+          <span class="brand-name-full text-base sm:text-xl">Foods</span>
         </div>
         <div class="hidden md:flex space-x-4 lg:space-x-6 text-gray-700 font-medium text-sm lg:text-base">
           <a href="#hero" class="nav-link">Welcome</a>
