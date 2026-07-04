@@ -4,15 +4,19 @@
 # Site settings
 title: Home - Kapardhi foods
 description: Premium natural snacks crafted with love & nature's finest. Pure, wholesome, and delicious.
-baseurl: "" # Keep empty for custom domain
-url: "https://Kapardhifoods.in" # Changed to your new custom domain
+baseurl: "" 
+url: "https://Kapardhifoods.in"
 
-# Build settings
-markdown: kramdown
-theme: null # Using custom HTML/CSS, no Jekyll theme
-
-# Exclude from processing
+# IMPORTANT: Disable Jekyll plugins that might cause errors
+plugins: []
 exclude:
   - .gitignore
   - README.md
   - LICENSE
+  - .jekyll-cache
+  - .nojekyll
+
+# These settings help avoid build errors
+markdown: kramdown
+theme: null
+safe: true
