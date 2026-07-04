@@ -4,8 +4,8 @@
 # Site settings
 title: Home - Kapardhi foods
 description: Premium natural snacks crafted with love & nature's finest. Pure, wholesome, and delicious.
-baseurl: "" # Leave empty if your site is at the root of your repository
-url: "https://saikiran-erukonda.github.io" # Replace with your GitHub Pages URL
+baseurl: "" # Keep empty for custom domain
+url: "https://Kapardhifoods.in" # Changed to your new custom domain
 
 # Build settings
 markdown: kramdown
